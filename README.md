@@ -52,25 +52,35 @@ O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação no c
 **Ferramenta:** Meltano (tap-csv para leitura dos arquivos locais e target-postgres para carregamento no PostgreSQL).  
   
 **Decisões Técnicas:**
- - Mantive a nomenclatura das tabelas no banco de dados final igual ao nome dos arquivos CSV (com a extensão .csv incluída).  
+ - Mantive a nomenclatura das tabelas no banco de dados final igual ao nome dos arquivos CSV (com o schema e a extensão .csv incluída).  
  - Adicionei a capacidade de parametrizar a data de execução para permitir o reprocessamento de dias anteriores.  
 
-Orquestração com Airflow
+## Orquestração com Airflow  
+
 Foram criadas duas DAGs no Airflow para orquestrar o processo:
 
-1. DAG de Extração (data_extract.py)
-Descrição: Extrai dados do PostgreSQL e do arquivo CSV, salvando-os localmente em disco.
+**1. DAG de Extração (data_extract.py)**  
+  
+**Descrição:** Extrai dados do PostgreSQL e do arquivo CSV, salvando-os localmente em disco.  
+**Agendamento:** Executa diariamente, 15 minutos antes da DAG de carregamento.  
+**Idempotência:** Garantida pela estrutura de diretórios baseada na data.  
 
-Agendamento: Executa diariamente, 15 minutos antes da DAG de carregamento.
+**2. DAG de Carregamento (data_loader.py)**  
+  
+**Descrição:** Carrega os dados dos arquivos CSV locais para o banco de dados PostgreSQL.  
+**Parametrização:** Permite a execução para datas específicas através da variável testedata no Airflow.  
+**Dependências:** Só é executada com sucesso após a conclusão bem-sucedida da DAG de extração.  
 
-Idempotência: Garantida pela estrutura de diretórios baseada na data.
+## Evidências de Execução
 
-2. DAG de Carregamento (data_loader.py)
-Descrição: Carrega os dados dos arquivos CSV locais para o banco de dados PostgreSQL.
+![image](dados/image.png)
 
-Parametrização: Permite a execução para datas específicas através da variável testedata no Airflow.
+Resultado: O resultado da query foi salvo em um arquivo CSV (resultado_final.csv) como evidência da execução bem-sucedida.
 
-Dependências: Só é executada após a conclusão bem-sucedida da DAG de extração.
+Logs e Monitoramento:
+
+Todos os logs de execução das DAGs estão disponíveis no Airflow, permitindo a identificação clara de falhas e a necessidade de reprocessamento.
+
 # Meltano
 
 Na pasta ELT contém 2 projetos (para melhor organização das etapas), o de extração dos dados de uma base postgres e arquivo .CSV e de carregamento dos dados para uma base postgres.
