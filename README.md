@@ -2,11 +2,17 @@
 
 Relatório desafio indicium tech para Engenheiro de Dados, o código foi entregue na branch LH_ED_FILIPETAVARES, todos os projetos foram colocados juntos pela facilidade para entregar o desafio aqui no github.
 
+# Ferramentas necessárias para executar o projeto.
+Linux
+Postgres
+Github
+Airflow
+Meltano (optei por utilizar o meltano ao invés do embulk por ter material indicado na indicium academy e por ter mais material disponível de documentação)
+(Teria sido muito melhor eu ter configurado uma máquina virtual no docker, mas eu já estava em um passo muito avançado do projeto e não daria tempo para configurar e entregar essa máquina a tempo, mas para um projeto de produção eu acredito que seria a melhor opção)
 
 # Meltano
 
-Na pasta ELT contém 2 projetos, o de extração dos dados de uma base postgres e arquivo .CSV e de carregamento dos dados para uma base postgres.
-
+Na pasta ELT contém 2 projetos (para melhor organização das etapas), o de extração dos dados de uma base postgres e arquivo .CSV e de carregamento dos dados para uma base postgres.
 
 ## Extração de dados
 
@@ -30,8 +36,16 @@ Este salva as tabelas com os mesmos nomes dos arquivos.
 
 # Airflow
 
-No projeto do airflow foram criados 2 arquivos DAG para separar as pipelines de extração e carregamento, elas são agendadas com um intervalo de 15 minutos entre a de extração para de carregamento 
-para não ter problema de execução conconrrente entre elas.
-Foi adicionado a possibilidade de parametrizar a data de carregamento através de uma variável do airflow "testedata" com a data desejada para execução no formato (YYYY-MM-DD), caso não tenha data preenchida 
-será utilizado a data do dia da execução para carregar os dados para o postgres.
+No projeto do airflow foram criados 2 arquivos DAG para separar as pipelines de extração e carregamento, elas são agendadas com um intervalo de 15 minutos entre a de extração para de carregamento para não ter problema de execução conconrrente entre elas.
+
+## Pipeline de extração de dados
+
+Foi criado o arquivo data_extract.py dentro da pasta dags para configurar a pipeline de extração de dados.
+A extração de dados foi configurada para executar diáriamente de forma automática e configurada para executar 15 minutos antes da pipeline de carregamento dos dados para garantir que seja finalizada a execução antes de realizar o carregamento dos dados. 
+
+## Pipeline de carregamento de dados
+
+Foi criado o arquivo data_loader.py dentro da pasta dags para configurar a pipeline de carregamento de dados.
+Foi adicionado a possibilidade de parametrizar a data de carregamento através das variáveis personalizadas do airflow "testedata" com a data desejada para execução no formato (YYYY-MM-DD).
+Esta variável pode ser criada diretamente na interface do airflow, no meu admin>variáveis, basta criar uma variável com a chave "testedata" e valor com a data, caso não tenha data preenchida na variável será utilizado a data do dia da execução para carregar os dados para o postgres (não pode esquecer de manter a variável vazia para execução diária de forma natural).
 
