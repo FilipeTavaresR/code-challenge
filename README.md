@@ -5,6 +5,7 @@
 **Branch de Entrega**: LH_ED_FILIPETAVARES
 
 #Visão Geral do Projeto
+
 O desafio consistiu em desenvolver uma pipeline de dados para extrair dados de duas fontes (um banco de dados PostgreSQL e um arquivo CSV), armazená-los localmente em disco e, posteriormente, carregá-los em um banco de dados PostgreSQL. A solução foi implementada utilizando as ferramentas Meltano (para extração e carregamento de dados) e Airflow (para orquestração e agendamento das tarefas).
 
 O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedidos (order_details) em um único banco de dados, permitindo a execução de uma query que relaciona essas duas tabelas.
@@ -25,7 +26,9 @@ O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação.
 #Extração e Armazenamento Local
 
 **1 - Exportar database northwind para CSV local**
+
 **2 - Criar cópia do csv "remoto" para local**
+
 **3 - Organizar arquivos em diretórios dessa maneira data/postgres/tabela/YYYY-MM-DD/arquivo.csv, no caso do CSV trocar postgres por csv.**
 
 *Fonte de Dados:*
