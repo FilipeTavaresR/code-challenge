@@ -1,10 +1,10 @@
 # Relatório de Entrega - Desafio Técnico Indicium Tech
 
-**Candidato**: Filipe Tavares
-**Posição**: Engenheiro de Dados
-**Branch de Entrega**: LH_ED_FILIPETAVARES
+** Candidato : ** Filipe Tavares
+** Posição : ** Engenheiro de Dados
+** Branch de Entrega : ** LH_ED_FILIPETAVARES
 
-#Visão Geral do Projeto
+# Visão Geral do Projeto
 
 O desafio consistiu em desenvolver uma pipeline de dados para extrair dados de duas fontes (um banco de dados PostgreSQL e um arquivo CSV), armazená-los localmente em disco e, posteriormente, carregá-los em um banco de dados PostgreSQL. A solução foi implementada utilizando as ferramentas Meltano (para extração e carregamento de dados) e Airflow (para orquestração e agendamento das tarefas).
 
