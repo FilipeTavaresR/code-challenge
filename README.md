@@ -24,9 +24,9 @@ O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação.
 
 #Extração e Armazenamento Local
 
-**1 Exportar database northwind para CSV local**
-**2 Criar cópia do csv "remoto" para local**
-**3 Organizar arquivos em diretórios dessa maneira data/postgres/tabela/YYYY-MM-DD/arquivo.csv, no caso do CSV trocar postgres por csv.**
+**1 - Exportar database northwind para CSV local**
+**2 - Criar cópia do csv "remoto" para local**
+**3 - Organizar arquivos em diretórios dessa maneira data/postgres/tabela/YYYY-MM-DD/arquivo.csv, no caso do CSV trocar postgres por csv.**
 
 *Fonte de Dados:*
  - Banco de dados PostgreSQL (Northwind).
