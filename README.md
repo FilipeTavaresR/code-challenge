@@ -10,6 +10,9 @@ Airflow
 Meltano (optei por utilizar o meltano ao invés do embulk por ter material indicado na indicium academy e por ter mais material disponível de documentação)
 (Teria sido muito melhor eu ter configurado uma máquina virtual no docker, mas eu já estava em um passo muito avançado do projeto e não daria tempo para configurar e entregar essa máquina a tempo, mas para um projeto de produção eu acredito que seria a melhor opção)
 
+# Cronograma
+![image](dados/cronograma.jpg)
+
 # Meltano
 
 Na pasta ELT contém 2 projetos (para melhor organização das etapas), o de extração dos dados de uma base postgres e arquivo .CSV e de carregamento dos dados para uma base postgres.
