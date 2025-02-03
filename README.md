@@ -23,7 +23,7 @@ O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedid
 O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação no cronograma.
 ![image](dados/cronograma.jpg)
   
-#1. - Extração e Armazenamento Local
+## 1. - Extração e Armazenamento Local
   
 **1A - Exportar database northwind para CSV local**  
   
@@ -46,7 +46,7 @@ O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação no c
  - Utilizei CSV como formato de saída por sua simplicidade e compatibilidade com ferramentas de ETL.  
  - A estrutura de diretórios foi organizada por fonte, tabela e data para facilitar o reprocessamento de dados históricos.  
   
-#2. - Carregamento para o Banco de Dados Final  
+## 2. - Carregamento para o Banco de Dados Final  
 **2A - Importar os arquivos CSV para dentro de uma base de dados**  
   
 **Ferramenta:** Meltano (tap-csv para leitura dos arquivos locais e target-postgres para carregamento no PostgreSQL).  
