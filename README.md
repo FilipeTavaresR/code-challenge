@@ -11,12 +11,12 @@ O desafio consistiu em desenvolver uma pipeline de dados para extrair dados de d
 O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedidos (order_details) em um único banco de dados, permitindo a execução de uma query que relaciona essas duas tabelas.
 
 # Ferramentas Utilizadas
-**Sistema Operacional**: Linux
-**Banco de Dados**: PostgreSQL
-**Versionamento**: GitHub
-**Orquestração**: Apache Airflow
-**Extração e Carregamento de Dados**: Meltano
-  **Justificativa**: Optei pelo Meltano pela disponibilidade de documentação e suporte na Indicium Academy.
+**Sistema Operacional:** Linux  
+**Banco de Dados:** PostgreSQL  
+**Versionamento:** GitHub  
+**Orquestração:** Apache Airflow  
+**Extração e Carregamento de Dados:** Meltano  
+  **Justificativa:** Optei pelo Meltano pela disponibilidade de documentação e suporte na Indicium Academy.  
 
 # Estrutura do Projeto
 
@@ -25,26 +25,26 @@ O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação.
 
 #Extração e Armazenamento Local
 
-**1 - Exportar database northwind para CSV local**
+**1 - Exportar database northwind para CSV local**  
 
-**2 - Criar cópia do csv "remoto" para local**
+**2 - Criar cópia do csv "remoto" para local**  
 
-**3 - Organizar arquivos em diretórios dessa maneira data/postgres/tabela/YYYY-MM-DD/arquivo.csv, no caso do CSV trocar postgres por csv.**
+**3 - Organizar arquivos em diretórios dessa maneira data/postgres/tabela/YYYY-MM-DD/arquivo.csv, no caso do CSV trocar postgres por csv.**  
 
 *Fonte de Dados:*
- - Banco de dados PostgreSQL (Northwind).
- - Arquivo CSV (order_details.csv).
-*Ferramenta:* Meltano (tap-postgres para PostgreSQL e tap-csv para o arquivo CSV).
-*Formato de Saída:* Arquivos CSV.
-*Estrutura de Diretórios:*
- /data/postgres/{table}/YYYY-MM-DD/file.csv  
- /data/csv/YYYY-MM-DD/file.csv  
-*Exemplo:*
- /data/postgres/orders/2024-01-01/file.csv  
- /data/csv/2024-01-01/file.csv  
-*Decisões Técnicas:*
- - Utilizei CSV como formato de saída por sua simplicidade e compatibilidade com ferramentas de ETL.
- - A estrutura de diretórios foi organizada por fonte, tabela e data para facilitar o reprocessamento de dados históricos.
+ - Banco de dados PostgreSQL (Northwind).  
+ - Arquivo CSV (order_details.csv).  
+*Ferramenta:* Meltano (tap-postgres para PostgreSQL e tap-csv para o arquivo CSV).  
+*Formato de Saída:* Arquivos CSV.  
+*Estrutura de Diretórios:*  
+ /data/postgres/{table}/YYYY-MM-DD/file.csv    
+ /data/csv/YYYY-MM-DD/file.csv   
+*Exemplo:*  
+ /data/postgres/orders/2024-01-01/file.csv    
+ /data/csv/2024-01-01/file.csv    
+*Decisões Técnicas:*  
+ - Utilizei CSV como formato de saída por sua simplicidade e compatibilidade com ferramentas de ETL.  
+ - A estrutura de diretórios foi organizada por fonte, tabela e data para facilitar o reprocessamento de dados históricos.  
 
 # Meltano
 
