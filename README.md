@@ -91,7 +91,7 @@ Foram criadas duas DAGs no Airflow para orquestrar o processo:
   - Clone o repositório: [code-challenge/LH_ED_FILIPETAVARES](https://github.com/FilipeTavaresR/code-challenge/tree/LH_ED_FILIPETAVARES)  
   - Execute as DAGs no Airflow:  
     A DAG de extração será executada automaticamente todos os dias.  
-    A DAG de carregamento pode ser executada manualmente ou agendada.  
+    A DAG de carregamento será executada automaticamente todos os dias e pode ser executada manualmente definindo uma variável airflow (admin>variables; key: "testdata" e val: data no formato **YYYY-MM-DD**).  
   
 **Reprocessamento para Datas Anteriores:**
   - No Airflow, crie uma variável chamada testedata com a data desejada no formato YYYY-MM-DD.
