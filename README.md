@@ -11,6 +11,7 @@ Meltano (optei por utilizar o meltano ao invés do embulk por ter material indic
 (Teria sido muito melhor eu ter configurado uma máquina virtual no docker, mas eu já estava em um passo muito avançado do projeto e não daria tempo para configurar e entregar essa máquina a tempo, mas para um projeto de produção eu acredito que seria a melhor opção)
 
 # Cronograma
+O cronograma foi criado conforme os requisitos do projeto separado por etapas menores para quando todas estiverem completas o desafio ser entregue em sua complitude.
 ![image](dados/cronograma.jpg)
 
 # Meltano
