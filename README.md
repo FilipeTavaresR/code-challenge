@@ -73,7 +73,7 @@ Foram criadas duas DAGs no Airflow para orquestrar o processo:
 
 ## Evidências de Execução
 
-![image](dados/image.jpeg)
+![image](dados/image.jpg)
 
 Resultado: O resultado da query foi salvo em um arquivo CSV (resultado_final.csv) como evidência da execução bem-sucedida.
 
