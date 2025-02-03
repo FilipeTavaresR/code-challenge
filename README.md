@@ -21,7 +21,7 @@ O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedid
 # Estrutura do Projeto
   
 O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação no cronograma.
-![image](dados/cronograma.jpg)
+![image](data/cronograma.jpg)
   
 ## 1. - Extração e Armazenamento Local
   
@@ -73,7 +73,7 @@ Foram criadas duas DAGs no Airflow para orquestrar o processo:
 
 ## Evidências de Execução
 
-![image](dados/image.jpg)
+![image](data/evidencia_banco.jpg)
 
 Resultado: O resultado da query foi salvo em um arquivo CSV (resultado_final.csv) como evidência da execução bem-sucedida.
 
