@@ -19,9 +19,28 @@ O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedid
 
 # Estrutura do Projeto
 
-O Projeto foi organizado em 
-O cronograma foi criado conforme os requisitos do projeto separado por etapas menores para quando todas estiverem completas o desafio ser entregue em sua complitude.
+O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação.
 ![image](dados/cronograma.jpg)
+
+#Extração e Armazenamento Local
+*1 Exportar database northwind para CSV local*
+*2 Criar cópia do csv "remoto" para local*
+*3 Organizar arquivos em diretórios dessa maneira data/postgres/tabela/YYYY-MM-DD/arquivo.csv, no caso do CSV trocar postgres por csv.*
+
+*Fonte de Dados:*
+ - Banco de dados PostgreSQL (Northwind).
+ - Arquivo CSV (order_details.csv).
+*Ferramenta:* Meltano (tap-postgres para PostgreSQL e tap-csv para o arquivo CSV).
+*Formato de Saída:* Arquivos CSV.
+*Estrutura de Diretórios:*
+ /data/postgres/{table}/YYYY-MM-DD/file.csv  
+ /data/csv/YYYY-MM-DD/file.csv  
+*Exemplo:*
+ /data/postgres/orders/2024-01-01/file.csv  
+ /data/csv/2024-01-01/file.csv  
+*Decisões Técnicas:*
+ - Utilizei CSV como formato de saída por sua simplicidade e compatibilidade com ferramentas de ETL.
+ - A estrutura de diretórios foi organizada por fonte, tabela e data para facilitar o reprocessamento de dados históricos.
 
 # Meltano
 
