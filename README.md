@@ -1,8 +1,8 @@
 # Relatório de Entrega - Desafio Técnico Indicium Tech
 
-**Candidato:** Filipe Tavares \n
-**Posição:** Engenheiro de Dados \n
-**Branch de Entrega:** LH_ED_FILIPETAVARES \n
+**Candidato:** Filipe Tavares  
+**Posição:** Engenheiro de Dados  
+**Branch de Entrega:** LH_ED_FILIPETAVARES  
 
 # Visão Geral do Projeto
 
