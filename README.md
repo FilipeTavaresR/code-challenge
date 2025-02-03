@@ -22,6 +22,7 @@ O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedid
   
 O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação no cronograma.
 ![image](data/cronograma.jpg)
+![file](data/evidencias.csv)
   
 ## 1. - Extração e Armazenamento Local
   
