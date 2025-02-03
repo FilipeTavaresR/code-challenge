@@ -1,16 +1,25 @@
-# Indicium Tech Code Challenge - Filipe Tavares
+# Relatório de Entrega - Desafio Técnico Indicium Tech
 
-Relatório desafio indicium tech para Engenheiro de Dados, o código foi entregue na branch LH_ED_FILIPETAVARES, todos os projetos foram colocados juntos pela facilidade para entregar o desafio aqui no github.
+**Candidato**: Filipe Tavares
+**Posição**: Engenheiro de Dados
+**Branch de Entrega**: LH_ED_FILIPETAVARES
 
-# Ferramentas necessárias para executar o projeto.
-Linux
-Postgres
-Github
-Airflow
-Meltano (optei por utilizar o meltano ao invés do embulk por ter material indicado na indicium academy e por ter mais material disponível de documentação)
-(Teria sido muito melhor eu ter configurado uma máquina virtual no docker, mas eu já estava em um passo muito avançado do projeto e não daria tempo para configurar e entregar essa máquina a tempo, mas para um projeto de produção eu acredito que seria a melhor opção)
+#Visão Geral do Projeto
+O desafio consistiu em desenvolver uma pipeline de dados para extrair dados de duas fontes (um banco de dados PostgreSQL e um arquivo CSV), armazená-los localmente em disco e, posteriormente, carregá-los em um banco de dados PostgreSQL. A solução foi implementada utilizando as ferramentas Meltano (para extração e carregamento de dados) e Airflow (para orquestração e agendamento das tarefas).
 
-# Cronograma
+O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedidos (order_details) em um único banco de dados, permitindo a execução de uma query que relaciona essas duas tabelas.
+
+# Ferramentas Utilizadas
+**Sistema Operacional**: Linux
+**Banco de Dados**: PostgreSQL
+**Versionamento**: GitHub
+**Orquestração**: Apache Airflow
+**Extração e Carregamento de Dados**: Meltano
+  **Justificativa**: Optei pelo Meltano pela disponibilidade de documentação e suporte na Indicium Academy.
+
+# Estrutura do Projeto
+
+O Projeto foi organizado em 
 O cronograma foi criado conforme os requisitos do projeto separado por etapas menores para quando todas estiverem completas o desafio ser entregue em sua complitude.
 ![image](dados/cronograma.jpg)
 
