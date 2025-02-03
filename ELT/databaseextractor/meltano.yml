@@ -1,0 +1,43 @@
+version: 1
+default_environment: dev
+project_id: c52b3ae9-7120-42e8-bdd5-e215c83e1719
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-postgres
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-postgres.git
+    config:
+      sqlalchemy_url: postgresql://postgres:postgres@localhost:5432/northwind
+      filter_schemas: [public]
+  - name: tap-csv
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-csv.git
+    config:
+      files:
+      - entity: order_details
+        path: /mnt/c/indicium/origem/order_details.csv     
+        keys: [order_id]
+        delimiter: ','
+  loaders:
+  - name: target-csv
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/target-csv.git
+    config:
+      delimiter: ','
+      output_path: ../output/data/csv
+      file_naming_scheme: '{datestamp}/{stream_name}.csv'
+  - name: target-csv-postgres
+    inherit_from: target-csv
+    config:
+      delimiter: ','
+      output_path: ../output/data/postgres
+      file_naming_scheme: '{stream_name}/{datestamp}/{stream_name}.csv'
+jobs:
+- name: all
+  tasks:
+  - tap-csv target-csv
+    tap-postgres target-csv-postgres

@@ -1,0 +1,79 @@
+version: 1
+default_environment: dev
+project_id: 10d22acf-4afe-421f-b6a5-7aaec85dea10
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-csv
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-csv.git
+    config: 
+      files:
+        - entity: order_details
+          path: ../output/data/csv/${LOAD_DATE}/order_details.csv
+          keys: [order_id, product_id]
+          delimiter: ','
+          table_name: order_details
+        - entity: public-categories.csv
+          path: ../output/data/postgres/public-categories/${LOAD_DATE}/public-categories.csv   
+          keys: [category_id]
+          delimiter: ','
+          table_name: public-categories
+        - entity: public-customers.csv
+          path: ../output/data/postgres/public-customers/${LOAD_DATE}/public-customers.csv   
+          keys: [customer_id]
+          delimiter: ','  
+        - entity: public-employee_territories.csv
+          path: ../output/data/postgres/public-employee_territories/${LOAD_DATE}/public-employee_territories.csv   
+          keys: [employee_id]
+          delimiter: ',' 
+        - entity: public-employees.csv
+          path: ../output/data/postgres/public-employees/${LOAD_DATE}/public-employees.csv   
+          keys: [employee_id]
+          delimiter: ','
+        - entity: public-orders.csv
+          path: ../output/data/postgres/public-orders/${LOAD_DATE}/public-orders.csv   
+          keys: [order_id]
+          delimiter: ',' 
+        - entity: public-products.csv
+          path: ../output/data/postgres/public-products/${LOAD_DATE}/public-products.csv   
+          keys: [product_id]
+          delimiter: ',' 
+        - entity: public-region.csv
+          path: ../output/data/postgres/public-region/${LOAD_DATE}/public-region.csv   
+          keys: [region_id]
+          delimiter: ',' 
+        - entity: public-shippers.csv
+          path: ../output/data/postgres/public-shippers/${LOAD_DATE}/public-shippers.csv   
+          keys: [shipper_id]
+          delimiter: ',' 
+        - entity: public-suppliers.csv
+          path: ../output/data/postgres/public-suppliers/${LOAD_DATE}/public-suppliers.csv   
+          keys: [supplier_id]
+          delimiter: ',' 
+        - entity: public-territories.csv
+          path: ../output/data/postgres/public-territories/${LOAD_DATE}/public-territories.csv   
+          keys: [territory_id]
+          delimiter: ',' 
+        - entity: public-us_states.csv
+          path: ../output/data/postgres/public-us_states/${LOAD_DATE}/public-us_states.csv   
+          keys: [state_id]
+          delimiter: ','                  
+  loaders:
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      host: "localhost"
+      port: 5432
+      user: "postgres"
+      password: "postgres"
+      database: "data_analyze"
+      default_target_schema: "public"
+jobs:
+- name: all
+  tasks:
+  - tap-csv target-postgres
