@@ -22,8 +22,7 @@ O objetivo final foi consolidar os dados de pedidos (orders) e detalhes de pedid
   
 O Projeto foi organizado em 6 etapas técnicas e 4 etapas de documentação no cronograma.
 ![image](data/cronograma.jpg)
-[Evidencias.CSV](evidencias.csv)
-  
+    
 ## 1. - Extração e Armazenamento Local
   
 **1A - Exportar database northwind para CSV local**  
@@ -74,50 +73,42 @@ Foram criadas duas DAGs no Airflow para orquestrar o processo:
 
 ## Evidências de Execução
 
-![image](data/evidencia_banco.jpg)
+![image](data/evidencia_banco.jpg)  
+    
+**Resultado:** O resultado da query foi salvo no arquivo [Evidencias.csv](data/evidencias.csv) como evidência da execução bem-sucedida.  
+**Logs e Monitoramento:** Todos os logs de execução das DAGs estão disponíveis no Airflow, permitindo a identificação clara de falhas e a necessidade de reprocessamento.  
 
-Resultado: O resultado da query foi salvo em um arquivo CSV (resultado_final.csv) como evidência da execução bem-sucedida.
+## Instruções para Execução  
+  
+**Pré-requisitos:**  
+  - Instalar e configurar o PostgreSQL.  
+  - Instalar o Airflow e configurar as conexões com o banco de dados.
+  - Instalar o Meltano e configurar os plugins necessários (tap-postgres, tap-csv, target-postgres, target-csv).
+  - Reconfigurar os diretórios e conexões de banco de dados conforme necessário 
 
-Logs e Monitoramento:
+**Executando o Projeto:**  
+  
+  - Clone o repositório: [code-challenge/LH_ED_FILIPETAVARES](https://github.com/FilipeTavaresR/code-challenge/tree/LH_ED_FILIPETAVARES)  
+  - Execute as DAGs no Airflow:  
+    A DAG de extração será executada automaticamente todos os dias.  
+    A DAG de carregamento pode ser executada manualmente ou agendada.  
+  
+**Reprocessamento para Datas Anteriores:**
+  - No Airflow, crie uma variável chamada testedata com a data desejada no formato YYYY-MM-DD.
+  - Execute a DAG de carregamento para reprocessar os dados da data especificada.
 
-Todos os logs de execução das DAGs estão disponíveis no Airflow, permitindo a identificação clara de falhas e a necessidade de reprocessamento.
+## Gaps e Melhorias Futuras
+  
+**1 - Gaps Identificados:**  
+  - O nome do schema do PostgreSQL está sendo salvo no nome dos arquivos CSV.
+  - O nome das tabelas no banco de dados final inclui a extensão .csv.  
+  
+**2 - Melhorias Futuras:**  
+  
+  -  Utilizar Docker para containerizar o ambiente e facilitar a execução em diferentes sistemas.
+  -  Implementar testes automatizados para garantir a qualidade do código.
+  -  Adicionar tratamento de erros mais robusto para lidar com falhas durante a execução.
 
-# Meltano
-
-Na pasta ELT contém 2 projetos (para melhor organização das etapas), o de extração dos dados de uma base postgres e arquivo .CSV e de carregamento dos dados para uma base postgres.
-
-## Extração de dados
-
-O projeto de extração utiliza 2 plugins para extrair dados, 1 para capturar os dados da base postgres(tap-postgres) em cada tabela e exportar para um arquivo CSV através de um plugin de carregamento(target-csv).
-A base de dados foi instalado um postgres local e importado o backup .sql do repositório do desafio.
-O segundo plugin utiliza um extrator de arquivo .CSV (tap-csv) e utiliza o mesmo plugin para carregamento(target-csv) utilizado na extração dos dados do postgres.
-O arquivo .csv foi adicionado a um diretório local (simulando um diretório externo ao projeto), copiado do repositório do desafio.
-Ambos salvam arquivos .CSV com os respectivos nomes seguindo o padrão:
-
-output/data/postgres/{table}/2024-01-01/file.csv
-output/data/postgres/{table}/2024-01-02/file.csv
-output/data/csv/2024-01-02/file.csv
-
-(Ficou um gap que está salvando o nome do eschema do postgres no nome dos arquivos, mantive dessa forma pois iria extrapolar o tempo de entrega do projeto para solucionar)
-
-## Carregamento de dados
-
-O projeto de carregamento de dados utiliza um plugin para ler os dados dos arquivos .CSV (tap-csv) que faz o stream para carregar os dados na base postgres através do plugin (target-postgres).
-Este salva as tabelas com os mesmos nomes dos arquivos.
-(Ficou um gap para retirar o ".csv" do nome das tabelas, mas o tempo estava esgotando para entrega do projeto e acabei optando por manter dessa forma sem pesquisar uma solução)
-
-# Airflow
-
-No projeto do airflow foram criados 2 arquivos DAG para separar as pipelines de extração e carregamento, elas são agendadas com um intervalo de 15 minutos entre a de extração para de carregamento para não ter problema de execução conconrrente entre elas.
-
-## Pipeline de extração de dados
-
-Foi criado o arquivo data_extract.py dentro da pasta dags para configurar a pipeline de extração de dados.
-A extração de dados foi configurada para executar diáriamente de forma automática e configurada para executar 15 minutos antes da pipeline de carregamento dos dados para garantir que seja finalizada a execução antes de realizar o carregamento dos dados. 
-
-## Pipeline de carregamento de dados
-
-Foi criado o arquivo data_loader.py dentro da pasta dags para configurar a pipeline de carregamento de dados.
-Foi adicionado a possibilidade de parametrizar a data de carregamento através das variáveis personalizadas do airflow "testedata" com a data desejada para execução no formato (YYYY-MM-DD).
-Esta variável pode ser criada diretamente na interface do airflow, no meu admin>variáveis, basta criar uma variável com a chave "testedata" e valor com a data, caso não tenha data preenchida na variável será utilizado a data do dia da execução para carregar os dados para o postgres (não pode esquecer de manter a variável vazia para execução diária de forma natural).
-
+## Conclusão  
+  
+O desafio foi concluído com sucesso, atendendo a todos os requisitos propostos. A pipeline desenvolvida é escalável, idempotente e preparada para reprocessamento de dados históricos. As decisões técnicas foram tomadas com base na simplicidade, eficiência, facilidade de manutenção e considerando o prazo de entrega.    
